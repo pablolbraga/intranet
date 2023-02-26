@@ -15,7 +15,7 @@
                                 <img src="../imgs/logo_completa.png" width="100%"/>
                             </div>
                             <div class="login-wrap p-4 p-md-5">
-                                <form action="#" class="signin-form">
+                                <form action="valida.php" class="signin-form" method="POST">
                                     <div class="form-group mt-3">
                                         <input type="text" class="form-control" id="login" name="login" required>
                                         <label class="form-control-placeholder" for="login">Login</label>                                        

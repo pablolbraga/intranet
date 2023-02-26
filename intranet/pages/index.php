@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-require_once("../conexao/conexao.php");
-$conn = new Conexao();
-$pdo = $conn->abrirConexao();
-
-
 $_SESSION["LOGIN_USUARIO"] = "plima";
 ?>
 <html>
@@ -17,7 +12,7 @@ $_SESSION["LOGIN_USUARIO"] = "plima";
 
     </head>
     <body>
-        
+
         <script src="../js/bs/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </body>
 </html>
