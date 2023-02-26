@@ -1,7 +1,9 @@
 <?php
 session_start();
+if ($_SESSION["ID_USUARIO"] == ""){
+    echo "<script>alert('Sessão expirada.');location.href='sair.php';</script>";
+}
 
-$_SESSION["LOGIN_USUARIO"] = "plima";
 ?>
 <html>
     <head>

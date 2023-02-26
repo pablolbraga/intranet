@@ -24,4 +24,14 @@ class UsuarioController{
 
     }
 
+    public function alterarSenha($idusuario, $senha){
+
+        $sql = "UPDATE SR_USUARIO SET NOVO = 'N', SENHA = :SENHA WHERE IDUSUARIO = :IDUSUARIO";
+        $qry = $this->conn->prepare($sql);
+        $qry->bindValue(":SENHA", $this->cripto->criptografarBase64($senha));
+        $qry->bindValue(":IDUSUARIO", $idusuario);
+        $qry->execute();
+
+    }
+
 }
