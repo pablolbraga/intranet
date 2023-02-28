@@ -14,7 +14,11 @@ class UsuarioController{
 
     public function validaLoginSenha($login, $senha){
 
-        $sql = "SELECT * FROM SR_USUARIO USU WHERE USU.STATUS = 'A' AND LOGIN = :LOGIN AND SENHA = :SENHA";
+        $sql = "SELECT USU.*, SEC.NAME AS NMSECUSER FROM 
+        SR_USUARIO USU 
+        INNER JOIN GLBPERSON PF ON PF.ID = USU.IDPERSON 
+        INNER JOIN SECUSER SEC ON PF.IDUSER = SEC.NAME 
+        WHERE USU.STATUS = 'A' AND LOGIN = :LOGIN AND SENHA = :SENHA";
         $qry = $this->conn->prepare($sql);
         $qry->bindValue(":LOGIN", $login);
         $qry->bindValue(":SENHA", $this->cripto->criptografarBase64($senha));

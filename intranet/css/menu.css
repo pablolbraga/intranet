@@ -39,10 +39,10 @@ a, a:hover, a:focus {
 }
 
 .line {
-    width: 100%;
+    width: 50%;
     height: 1px;
-    border-bottom: 1px dashed #ddd;
-    margin: 40px 0;
+    border-bottom: 0px dashed #ddd;
+    margin: 10px 0;
 }
 
 /* ---------------------------------------------------
