@@ -37,6 +37,16 @@ WHERE ADM.STATUS IN (1,2) ";
 $_SQL_PROFISSIONAIS_ATIVOS = "SELECT PF.ID, PF.NAME AS NOME FROM GLBPROFESSIONAL PROF INNER JOIN GLBPERSON PF ON PF.ID = PROF.IDPERSON 
 WHERE PROF.ACTIVE = 1";
 $_SQL_ESPECIALIDADES = "select ID, CODENAME AS NOME from scccode where idtable = 144 and canceled = 0 ORDER BY CODENAME";
+$_SQL_PROFISSIONAIS_ENFERMEIRO = "SELECT PF.ID, PF.NAME AS NOME FROM GLBPROFESSIONAL PROF 
+INNER JOIN GLBPERSON PF ON PF.ID = PROF.IDPERSON 
+WHERE PROF.SCSPECIALITY IN (122632, 243378, 243379, 350292) AND PROF.ACTIVE = 1 ";
+$_SQL_PACIENTES_ATIVOS_POR_IDPATIENT = "SELECT ADM.IDPATIENT AS ID, (PF.NAME || ' - ' || HP.NAME) AS NOME 
+FROM CAPADMISSION ADM 
+INNER JOIN GLBPATIENT PAT ON PAT.ID = ADM.IDPATIENT 
+INNER JOIN GLBPERSON PF ON PF.ID = PAT.IDPERSON 
+INNER JOIN glbhealthprovdep HPD ON HPD.ID = adm.idhealthprovdep 
+INNER JOIN glbhealthprovider HP ON HP.ID = hpd.idhealthprovider 
+WHERE ADM.STATUS = 1 ";
 
 ?>
 <html>
@@ -104,6 +114,10 @@ $_SQL_ESPECIALIDADES = "select ID, CODENAME AS NOME from scccode where idtable =
                         $sql = $_SQL_PROFISSIONAIS_ATIVOS;
                     }  else if ($_POST["tipo"] == 6){
                         $sql = $_SQL_ESPECIALIDADES;
+                    }  else if ($_POST["tipo"] == 7){
+                        $sql = $_SQL_PROFISSIONAIS_ENFERMEIRO;
+                    }  else if ($_POST["tipo"] == 8){
+                        $sql = $_SQL_PACIENTES_ATIVOS_POR_IDPATIENT;
                     }
 
                     $sql2 = "SELECT J.ID, J.NOME FROM (";

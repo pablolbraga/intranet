@@ -12,6 +12,7 @@ if ($_SESSION["ID_USUARIO"] == ""){
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="../css/bs/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">               
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.min.js"></script>
         <script src="../js/funcoes.js"></script>
     </head>
     <body>
@@ -24,6 +25,15 @@ if ($_SESSION["ID_USUARIO"] == ""){
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuVisitas">
                     <li><a class="dropdown-item" href="index.php?pag=1"><b>Agendamento</b></a></li>
+                </ul>
+            </div>
+            &nbsp;
+            <div class="dropdown">
+                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuServicos" data-bs-toggle="dropdown" aria-expanded="false">
+                    Serviços
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuServicos">
+                    <li><a class="dropdown-item" href="index.php?pag=2"><b>Solicitar Serviço</b></a></li>
                 </ul>
             </div>
 
@@ -41,6 +51,8 @@ if ($_SESSION["ID_USUARIO"] == ""){
         <?php
         if (@$_GET["pag"] == "1"){
             require_once("visitasagendamento.php");
+        } else if (@$_GET["pag"] == "2"){
+            require_once("solicitacaoservico.php");
         }
         ?>
 

@@ -38,4 +38,15 @@ class UsuarioController{
 
     }
 
+    public function buscarPorId($idusuario){
+
+        $sql = "SELECT * FROM SR_USUARIO WHERE IDUSUARIO = :IDUSUARIO";
+        $qry = $this->conn->prepare($sql);
+        $qry->bindValue(":IDUSUARIO", $idusuario);
+        $qry->execute();
+        $res = $qry->fetchAll(PDO::FETCH_ASSOC);
+        return $res;
+
+    }
+
 }
