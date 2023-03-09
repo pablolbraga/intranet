@@ -176,7 +176,7 @@ class SolicitacaoServicoController{
 
     }
 
-    public function listar($dataini, $datafim, $idpaciente, $idenfermeiro, $tipo, $inclusaoprescricao, $justificativa){
+    public function listar($dataini, $datafim, $idpaciente, $idenfermeiro, $tipo, $inclusaoprescricao, $justificativa, $idsolicitante = ""){
 
         $sql = "
             SELECT 
@@ -222,9 +222,11 @@ class SolicitacaoServicoController{
         if ($justificativa != ""){
             $sql .= "AND S.JUSTIFICATIVA = :JUSTIFICATIVA ";
         }
+        if ($idsolicitante != ""){
+            $sql .= "AND S.IDUSU_SOLIC = :IDUSUSOLIC ";
+        }
         $sql .= "ORDER BY ID";
 
-        //echo $sql; exit();
         $qry = $this->conn->prepare($sql);
         $qry->bindValue(":DATAINI",  $dataini . " 00:00:00");
         $qry->bindValue(":DATAFIM",  $datafim . " 23:59:59");
@@ -242,6 +244,9 @@ class SolicitacaoServicoController{
         }
         if ($justificativa != ""){
             $qry->bindValue(":JUSTIFICATIVA", $justificativa);
+        }
+        if ($idsolicitante != ""){
+            $qry->bindValue(":IDUSUSOLIC", $idsolicitante);
         }
         $qry->execute();
         $res = $qry->fetchAll(PDO::FETCH_ASSOC);

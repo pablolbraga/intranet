@@ -36,6 +36,15 @@ if ($_SESSION["ID_USUARIO"] == ""){
                     <li><a class="dropdown-item" href="index.php?pag=2"><b>Solicitar Serviço</b></a></li>
                 </ul>
             </div>
+            &nbsp;
+            <div class="dropdown">
+                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuAtendimento" data-bs-toggle="dropdown" aria-expanded="false">
+                    Atendimento
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuAtendimento">
+                    <li><a class="dropdown-item" href="index.php?pag=3"><b>Plantões</b></a></li>
+                </ul>
+            </div>
 
             <div class="container-fluid">
                 <a class="navbar-brand" href="#"></a>
@@ -53,6 +62,8 @@ if ($_SESSION["ID_USUARIO"] == ""){
             require_once("visitasagendamento.php");
         } else if (@$_GET["pag"] == "2"){
             require_once("solicitacaoservico.php");
+        } else if (@$_GET["pag"] == "3"){
+            require_once("plantao.php");
         }
         ?>
 

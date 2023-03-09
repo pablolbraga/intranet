@@ -20,6 +20,11 @@ class Constantes{
         array("ID" => "NAO", "NOME" => "NÃO")
     );
 
+    static $arrEntradaSaida = array(
+        array("ID" => "E", "NOME" => "ENTRADA"),
+        array("ID" => "S", "NOME" => "SAÍDA")
+    );
+
     static $arrJustificativaMatMed = array(
         array("ID" => "Admissão", "NOME" => "ADMISSÃO"),
         array("ID" => "Alteração no estado clínico", "NOME" => "ALTERAÇÃO DO ESTADO CLÍNICO"),

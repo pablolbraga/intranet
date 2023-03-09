@@ -17,6 +17,7 @@ if (count($qryUsuario) > 0){
         $_SESSION["NOME_USUARIO"] = $qryUsuario[0]["NOME"];
         $_SESSION["EMAIL_USUARIO"] = $qryUsuario[0]["EMAIL"];
         $_SESSION["NMSECUSER_USUARIO"] = $qryUsuario[0]["NMSECUSER"];
+        $_SESSION["UGB_USUARIO"] = $qryUsuario[0]["UGB"];
         
         echo "<script>location.href='index.php';</script>";
     }
