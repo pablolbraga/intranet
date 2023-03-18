@@ -47,6 +47,7 @@ INNER JOIN GLBPERSON PF ON PF.ID = PAT.IDPERSON
 INNER JOIN glbhealthprovdep HPD ON HPD.ID = adm.idhealthprovdep 
 INNER JOIN glbhealthprovider HP ON HP.ID = hpd.idhealthprovider 
 WHERE ADM.STATUS = 1 ";
+$_SQL_SERVICOS = "SELECT ID, NAME AS NOME FROM GLBHEALTHPROVIDER ORDER BY NAME";
 
 ?>
 <html>
@@ -118,6 +119,8 @@ WHERE ADM.STATUS = 1 ";
                         $sql = $_SQL_PROFISSIONAIS_ENFERMEIRO;
                     }  else if ($_POST["tipo"] == 8){
                         $sql = $_SQL_PACIENTES_ATIVOS_POR_IDPATIENT;
+                    }  else if ($_POST["tipo"] == 9){
+                        $sql = $_SQL_SERVICOS;
                     }
 
                     $sql2 = "SELECT J.ID, J.NOME FROM (";

@@ -25,6 +25,7 @@ if ($_SESSION["ID_USUARIO"] == ""){
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuVisitas">
                     <li><a class="dropdown-item" href="index.php?pag=1"><b>Agendamento</b></a></li>
+                    <li><a class="dropdown-item" href="index.php?pag=4"><b>Programação</b></a></li>
                 </ul>
             </div>
             &nbsp;
@@ -64,6 +65,8 @@ if ($_SESSION["ID_USUARIO"] == ""){
             require_once("solicitacaoservico.php");
         } else if (@$_GET["pag"] == "3"){
             require_once("plantao.php");
+        } else if (@$_GET["pag"] == "4"){
+            require_once("visitasprogramadas.php");
         }
         ?>
 

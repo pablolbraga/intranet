@@ -7,16 +7,16 @@ if ($_REQUEST["tipo"] == "E"){
 
     try{
         $ctrVisita->excluirConsulta(
-            @$_POST["txtIdCapConsult"],
+            @$_POST["txtIdCapConsult"]
+        );
+        $ctrVisita->excluirVisitasProg(
             @$_POST["txtIdAdmission"],
             @$_POST["txtDtIni"],
             @$_POST["txtDtFim"],
             @$_POST["txtIdProfExc"],
             @$_POST["txtIdProfAgeExc"]
         );
-
         
-
         echo "Excluído com sucesso.";
     } catch(Exception $e){
         echo "Erro ao excluir o registro. Erro:" . $e->getMessage();
@@ -41,6 +41,24 @@ if ($_REQUEST["tipo"] == "E"){
         $consultaModel->setNmprofessional($_POST["nmprofessional"]);
 
         $ctrVisita->adicionarConsulta($consultaModel);
+        echo "Incluído com sucesso.";
+    } catch(Exception $e){
+        echo "Erro ao incluir o registro. Erro:" . $e->getMessage();
+    }
+
+} else if ($_REQUEST["tipo"] == "RV"){
+
+    try{ 
+        require_once("../controllers/agendacontroller.php");
+        $ctrAgenda = new AgendaController();
+        
+        $ctrAgenda->reagendamentoVisita(
+            $_POST["idprofagenda"],
+            $_POST["idprofagendaanterior"],
+            $_POST["data"],
+            $_POST["horaini"],
+            $_POST["horafim"]
+        );
         echo "Incluído com sucesso.";
     } catch(Exception $e){
         echo "Erro ao incluir o registro. Erro:" . $e->getMessage();
