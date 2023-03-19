@@ -319,7 +319,7 @@ class VisitasController{
         $qry->bindValue(":IDADMISSION", $idAdmission);
         $qry->bindValue(":IDPROFAGENDA", $idProfAgenda);
         $qry->execute();
-        echo $sql . "<br>IDADMISSION: {$idAdmission}<br>IDPROFAGENDA: {$idProfAgenda}<br>";
+        //echo $sql . "<br>IDADMISSION: {$idAdmission}<br>IDPROFAGENDA: {$idProfAgenda}<br>";
     }
 
     public function incluirCancelamentoVisita($idAdmission, $idProfAgenda, $dataInicio, $dataFim, $idProfessional, $idUsuario){
@@ -357,7 +357,7 @@ class VisitasController{
         $qry->bindValue(":IDPROFESSIONAL", $idProfessional);
         $qry->bindValue(":IDUSUARIO", $idUsuario);
         $qry->execute();
-        echo $sql . "<br>IDADMISSION: {$idAdmission}<br>IDPROFAGENDA: {$idProfAgenda}<br>DATA INICIO: {$dataInicio}<br>DATA FIM: {$dataFim}<br>IDPROFESSIONAL: {$idProfessional}<br>IDUSUARIO: {$idUsuario}<br>";
+        //echo $sql . "<br>IDADMISSION: {$idAdmission}<br>IDPROFAGENDA: {$idProfAgenda}<br>DATA INICIO: {$dataInicio}<br>DATA FIM: {$dataFim}<br>IDPROFESSIONAL: {$idProfessional}<br>IDUSUARIO: {$idUsuario}<br>";
     }
 
 }
