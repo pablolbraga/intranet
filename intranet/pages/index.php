@@ -46,6 +46,15 @@ if ($_SESSION["ID_USUARIO"] == ""){
                     <li><a class="dropdown-item" href="index.php?pag=3"><b>Plantões</b></a></li>
                 </ul>
             </div>
+            &nbsp;
+            <div class="dropdown">
+                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuSuprimento" data-bs-toggle="dropdown" aria-expanded="false">
+                    Suprimentos
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuSuprimento">
+                    <li><a class="dropdown-item" href="index.php?pag=5"><b>Solicitação de Compras</b></a></li>
+                </ul>
+            </div>
 
             <div class="container-fluid">
                 <a class="navbar-brand" href="#"></a>
@@ -67,6 +76,8 @@ if ($_SESSION["ID_USUARIO"] == ""){
             require_once("plantao.php");
         } else if (@$_GET["pag"] == "4"){
             require_once("visitasprogramadas.php");
+        } else if (@$_GET["pag"] == "5"){
+            require_once("solicitarcompra.php");
         }
         ?>
 

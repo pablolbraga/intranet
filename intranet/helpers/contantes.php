@@ -226,4 +226,41 @@ class Constantes{
         array("ID" => 2, "NOME" => "ENTREGA")
     );
 
+    static $arrStatusSolicitacaoCompra = array(
+        array("ID" => "", "NOME" => "SELECIONE"),
+        array("ID" => "PENDENTE", "NOME" => "PENDENTE"),
+        array("ID" => "COMPRADO", "NOME" => "COMPRADO"),
+        array("ID" => "RECEBIDO", "NOME" => "RECEBIDO")
+    );
+
+    static $arrUrgenciaSolicitacaoCompra = array(
+        array("ID" => "", "NOME" => "NÃO É URGÊNCIA"),
+        array("ID" => "Alteração da condição clínica", "NOME" => "Alteração da condição clínica"),
+        array("ID" => "Alteração do estado clínico", "NOME" => "Alteração do estado clínico"),
+        array("ID" => "Alteração na prescrição médica", "NOME" => "Alteração na prescrição médica"),
+        array("ID" => "Aumento de consumo", "NOME" => "Aumento de consumo"),
+        array("ID" => "Consumo acima do previsto", "NOME" => "Consumo acima do previsto"),
+        array("ID" => "Consumo excessivo", "NOME" => "Consumo excessivo"),
+        array("ID" => "Extravio", "NOME" => "Extravio"),
+        array("ID" => "Erro de contagem", "NOME" => "Erro de contagem"),
+        array("ID" => "Erro na Integração", "NOME" => "Erro na Integração"),
+        array("ID" => "Estoque Zerado", "NOME" => "Estoque Zerado"),
+        array("ID" => "Falha na dispensação", "NOME" => "Falha na dispensação"),
+        array("ID" => "Falha no plano terapêutico", "NOME" => "Falha no plano terapêutico"),
+        array("ID" => "Falha na utilização", "NOME" => "Falha na utilização"),
+        array("ID" => "Falha na solic. da secretaria", "NOME" => "Falha na solic. da secretaria"),
+        array("ID" => "Falha na solic. da enfermeira", "NOME" => "Falha na solic. da enfermeira"),
+        array("ID" => "Internação incompleta", "NOME" => "Internação incompleta"),
+        array("ID" => "Não foi enviado pela fármacia", "NOME" => "Não foi enviado pela fármacia"),
+        array("ID" => "Não pediu no consumo semanal", "NOME" => "Não pediu no consumo semanal"),
+        array("ID" => "Não solicitado pedido semanal", "NOME" => "Não solicitado pedido semanal"),
+        array("ID" => "Não solicitado pela secretaria", "NOME" => "Não solicitado pela secretaria"),
+        array("ID" => "Perda na utilização", "NOME" => "Perda na utilização"),
+        array("ID" => "Pedidos Semanais", "NOME" => "Pedidos Semanais"),
+        array("ID" => "Reposição de Estoque", "NOME" => "Reposição de Estoque"),
+        array("ID" => "Reposição incompleta", "NOME" => "Reposição incompleta"),
+        array("ID" => "Troca de produto", "NOME" => "Troca de produto"),
+        array("ID" => "Outros", "NOME" => "Outros"),
+    );
+
 }

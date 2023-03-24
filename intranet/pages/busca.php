@@ -48,6 +48,8 @@ INNER JOIN glbhealthprovdep HPD ON HPD.ID = adm.idhealthprovdep
 INNER JOIN glbhealthprovider HP ON HP.ID = hpd.idhealthprovider 
 WHERE ADM.STATUS = 1 ";
 $_SQL_SERVICOS = "SELECT ID, NAME AS NOME FROM GLBHEALTHPROVIDER ORDER BY NAME";
+$_SQL_MATMED = "SELECT SC.ID, SC.CODENAME AS NOME FROM SCCCODE SC WHERE SC.IDTABLE IN (54,55) ORDER BY SC.CODENAME";
+$_SQL_FORNECEDOR = "SELECT ID, NAME AS NOME FROM GLBENTERPRISE WHERE SUPPLIERMAT = 1 ORDER BY NAME";
 
 ?>
 <html>
@@ -121,6 +123,10 @@ $_SQL_SERVICOS = "SELECT ID, NAME AS NOME FROM GLBHEALTHPROVIDER ORDER BY NAME";
                         $sql = $_SQL_PACIENTES_ATIVOS_POR_IDPATIENT;
                     }  else if ($_POST["tipo"] == 9){
                         $sql = $_SQL_SERVICOS;
+                    }  else if ($_POST["tipo"] == 10){
+                        $sql = $_SQL_MATMED;
+                    }  else if ($_POST["tipo"] == 11){
+                        $sql = $_SQL_FORNECEDOR;
                     }
 
                     $sql2 = "SELECT J.ID, J.NOME FROM (";
