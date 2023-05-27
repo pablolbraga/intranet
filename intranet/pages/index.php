@@ -20,12 +20,20 @@ if ($_SESSION["ID_USUARIO"] == ""){
             <img class="rounded-circle" alt="100x100" width="50" height="50" src="../imgs/logo.png"  data-holder-rendered="true">
             &nbsp;
             <div class="dropdown">
-                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuVisitas" data-bs-toggle="dropdown" aria-expanded="false">
-                    Visitas
+                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuAtendimento" data-bs-toggle="dropdown" aria-expanded="false">
+                    Atendimento
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuVisitas">
-                    <li><a class="dropdown-item" href="index.php?pag=1"><b>Agendamento</b></a></li>
-                    <li><a class="dropdown-item" href="index.php?pag=4"><b>Programação</b></a></li>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuAtendimento">
+                    <li><a class="dropdown-item" href="index.php?pag=3"><b>Plantões</b></a></li>
+                </ul>
+            </div>
+            &nbsp;
+            <div class="dropdown">
+                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuAtendimento" data-bs-toggle="dropdown" aria-expanded="false">
+                    Autorização
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuAutorizacao">
+                    <li><a class="dropdown-item" href="index.php?pag=6"><b>Visualizar Orçamento</b></a></li>
                 </ul>
             </div>
             &nbsp;
@@ -39,15 +47,6 @@ if ($_SESSION["ID_USUARIO"] == ""){
             </div>
             &nbsp;
             <div class="dropdown">
-                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuAtendimento" data-bs-toggle="dropdown" aria-expanded="false">
-                    Atendimento
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuAtendimento">
-                    <li><a class="dropdown-item" href="index.php?pag=3"><b>Plantões</b></a></li>
-                </ul>
-            </div>
-            &nbsp;
-            <div class="dropdown">
                 <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuSuprimento" data-bs-toggle="dropdown" aria-expanded="false">
                     Suprimentos
                 </button>
@@ -55,7 +54,17 @@ if ($_SESSION["ID_USUARIO"] == ""){
                     <li><a class="dropdown-item" href="index.php?pag=5"><b>Solicitação de Compras</b></a></li>
                 </ul>
             </div>
-
+            &nbsp;
+            <div class="dropdown">
+                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuVisitas" data-bs-toggle="dropdown" aria-expanded="false">
+                    Visitas
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuVisitas">
+                    <li><a class="dropdown-item" href="index.php?pag=1"><b>Agendamento</b></a></li>
+                    <li><a class="dropdown-item" href="index.php?pag=4"><b>Programação</b></a></li>
+                </ul>
+            </div>
+            &nbsp;
             <div class="container-fluid">
                 <a class="navbar-brand" href="#"></a>
                 <div>
@@ -78,6 +87,10 @@ if ($_SESSION["ID_USUARIO"] == ""){
             require_once("visitasprogramadas.php");
         } else if (@$_GET["pag"] == "5"){
             require_once("solicitarcompra.php");
+        } else if (@$_GET["pag"] == "6"){
+            require_once("orcamento.php");
+        } else if (@$_GET["pag"] == "7"){
+            require_once("orcamento_pesq.php");
         }
         ?>
 
