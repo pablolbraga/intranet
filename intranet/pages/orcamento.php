@@ -22,7 +22,7 @@ $ctrOrcamento = new OrcamentoController();
                 </div>
             </nav>
             <br/>
-            <form name="frmOrcamento" id="frmOrcamento" method="POST" action="index.php?pag=7">
+            <form name="frmOrcamentoVis" id="frmOrcamentoVis" method="POST" action="index.php?pag=7">
                 <div class="row">
                     <label for="txtDataInicioPesq" class="col-sm-2 col-form-label">Orçamento/Aditivo:</label>
                     <div class="col-sm-2">

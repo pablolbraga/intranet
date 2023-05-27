@@ -4,7 +4,8 @@ require_once("../controllers/textocontroller.php");
 $ctrOrcamento = new OrcamentoController();
 $ctrTexto = new TextoController();
 
-$qry = $ctrOrcamento->buscarPorId($_POST["txtOrcamento"]);
+$idOrcamento = $_POST["txtOrcamento"];
+$qry = $ctrOrcamento->buscarPorId($idOrcamento);
 
 if (count($qry) > 0){
     $idConvenio = $qry[0]["IDCONVENIO"];
