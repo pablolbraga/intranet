@@ -38,6 +38,15 @@ if ($_SESSION["ID_USUARIO"] == ""){
             </div>
             &nbsp;
             <div class="dropdown">
+                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuFinanceiro" data-bs-toggle="dropdown" aria-expanded="false">
+                    Financeiro
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuFinanceiro">
+                    <li><a class="dropdown-item" href="index.php?pag=8"><b>Solicitar Nota</b></a></li>
+                </ul>
+            </div>
+            &nbsp;
+            <div class="dropdown">
                 <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuServicos" data-bs-toggle="dropdown" aria-expanded="false">
                     Serviços
                 </button>
@@ -91,6 +100,8 @@ if ($_SESSION["ID_USUARIO"] == ""){
             require_once("orcamento.php");
         } else if (@$_GET["pag"] == "7"){
             require_once("orcamento_pesq.php");
+        } else if (@$_GET["pag"] == "8"){
+            require_once("notafiscal.php");
         }
         ?>
 
