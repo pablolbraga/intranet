@@ -38,6 +38,15 @@ if ($_SESSION["ID_USUARIO"] == ""){
             </div>
             &nbsp;
             <div class="dropdown">
+                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuEnfermagem" data-bs-toggle="dropdown" aria-expanded="false">
+                    Enfermagem
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuEnfermagem">
+                    <li><a class="dropdown-item" href="index.php?pag=9"><b>Alteração de Prescrição</b></a></li>
+                </ul>
+            </div>
+            &nbsp;
+            <div class="dropdown">
                 <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuFinanceiro" data-bs-toggle="dropdown" aria-expanded="false">
                     Financeiro
                 </button>
@@ -102,6 +111,8 @@ if ($_SESSION["ID_USUARIO"] == ""){
             require_once("orcamento_pesq.php");
         } else if (@$_GET["pag"] == "8"){
             require_once("notafiscal.php");
+        } else if (@$_GET["pag"] == "9"){
+            require_once("alteracaoprescricao.php");
         }
         ?>
 
