@@ -14,6 +14,13 @@ if ($_SESSION["ID_USUARIO"] == ""){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.min.js"></script>
         <script src="../js/funcoes.js"></script>
+        <script src="../js/dt/jquery-3.5.1.js"></script>
+        <script src="../js/dt/jquery.dataTables.min.js"></script>
+        <script src="../js/dt/dataTables.bootstrap5.min.js"></script>
+        <script src="../js/dt/buttons.print.min.js"></script>
+        <script src="../js/dt/dataTables.buttons.min.js"></script>
+        <script src="../js/dt/buttons.html5.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -25,6 +32,15 @@ if ($_SESSION["ID_USUARIO"] == ""){
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuAtendimento">
                     <li><a class="dropdown-item" href="index.php?pag=3"><b>Plantões</b></a></li>
+                </ul>
+            </div>
+            &nbsp;
+            <div class="dropdown">
+                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuCcid" data-bs-toggle="dropdown" aria-expanded="false">
+                    CCID
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuCcid">
+                    <li><a class="dropdown-item" href="index.php?pag=10"><b>Controle de Antibiótico</b></a></li>
                 </ul>
             </div>
             &nbsp;
@@ -113,6 +129,8 @@ if ($_SESSION["ID_USUARIO"] == ""){
             require_once("notafiscal.php");
         } else if (@$_GET["pag"] == "9"){
             require_once("alteracaoprescricao.php");
+        } else if (@$_GET["pag"] == "10"){
+            require_once("controleantibiotico.php");
         }
         ?>
 
