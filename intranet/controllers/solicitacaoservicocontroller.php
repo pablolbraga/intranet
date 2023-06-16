@@ -254,4 +254,205 @@ class SolicitacaoServicoController{
 
     }
 
+    public function listarTriagemPrioridade($dataInicio, $dataFim, $situacao, $pedidoSemanal, $idEnfermeira, $justificativa){
+
+        $sql = "SELECT 
+                    DISTINCT 
+                    S.ID
+                    , U.NOME AS NMSOLICITANTE
+                    , P.NAME AS NMPACIENTE 
+                    , S.TIPO_PEDIDOS 
+                    , S.JUSTIFICATIVA 
+                    , TO_CHAR(S.DATA_SOLIC,'DD/MM/YYYY HH24:MI:SS') AS DATA_SOLIC 
+                    , TO_CHAR(S.DATA_MAXIMA,'DD/MM/YYYY HH24:MI:SS') AS DATA_MAXIMA
+                    , UB.NOME AS NMUSUBAIXA
+                    , TO_CHAR(S.DATA_BAIXA,'DD/MM/YYYY HH24:MI:SS') AS DATA_BAIXA
+                    , (SELECT NOME FROM SR_USUARIO WHERE IDUSUARIO = IDUSU_BAIXA_PRIORIDADE) AS NMPRIORIDADE 
+                    , TO_CHAR(S.DATA_BAIXA_PRIORIDADE, 'DD/MM/YYYY HH24:MI:SS') AS DATA_BAIXA_PRIORIDADE 
+                    , (SELECT NOME FROM SR_USUARIO WHERE IDUSUARIO = IDUSU_BAIXA_LOGIS) AS NMLOGISTICA 
+                    , TO_CHAR(S.DATA_BAIXA_LOGIS, 'DD/MM/YYYY HH24:MI:SS') AS DATA_BAIXA_LOGIS 
+                    , (SELECT NOME FROM SR_USUARIO WHERE IDUSUARIO = IDUSU_BAIXA_MOTORISTA) AS NMMOTORISTA 
+                    , TO_CHAR(S.DATA_BAIXA_MOTORISTA, 'DD/MM/YYYY HH24:MI:SS') AS DATA_BAIXA_MOTORISTA 
+                    , S.STATUS
+                    , S.PRIORIDADE 
+                    , S.OBSERVACAO_SOLIC 
+                    , S.IDMOTATRASO 
+                    , S.OBSERVACAO_BAIXA AS OBS_AUTORIZACAO
+                    , S.OBS_BAIXA_LOGIS AS OBS_LOGISTICA 
+                    , MOT.OBS_INICIOATEND AS OBS_INICIOATENDIMENTOSUPRI 
+                    , MOT.OBS_RETORNO AS OBS_FINALATENDIMENTOSUPRI 
+                    , S.PEDIDO_SEMANAL
+                FROM 
+                    SR_SOLICITACAO_MATMED S 
+                    INNER JOIN SR_USUARIO U ON U.IDUSUARIO = S.IDUSU_SOLIC 
+                    INNER JOIN GLBPATIENT G ON G.ID = S.IDPACIENTE 
+                    INNER JOIN GLBPERSON P ON P.ID = G.IDPERSON 
+                    LEFT JOIN SR_USUARIO UB ON UB.IDUSUARIO = S.IDUSU_BAIXA 
+                    LEFT JOIN SR_ROTA_MOTORISTA MOT ON MOT.IDSOLICITACAO = S.ID 
+                WHERE 
+                    S.IDUSU_EXC IS NULL ";
+        if ($dataInicio != ""){
+            $sql .= "AND S.DATA_SOLIC >= TO_DATE(:DATAINICIO, 'DD/MM/YYYY HH24:MI:SS') ";
+        }
+        if ($dataFim != ""){
+            $sql .= "AND S.DATA_SOLIC <= TO_DATE(:DATAFIM, 'DD/MM/YYYY HH24:MI:SS') ";
+        }
+        if ($situacao != ""){
+            $sql .= "AND S.STATUS = :SITUACAO ";
+        }
+        if ($pedidoSemanal != ""){
+            $sql .= "AND S.PEDIDO_SEMANAL = :PEDIDOSEMANAL ";
+        }
+        if ($idEnfermeira != ""){
+            $sql .= "AND S.ENFERMEIRA = :IDENFERMEIRA ";
+        }
+        if ($justificativa != ""){
+            $sql .= "AND S.JUSTIFICATIVA = :JUSTIFICATIVA ";
+        }
+        $sql .= "
+                ORDER BY 
+                    S.PRIORIDADE
+                    , TO_CHAR(S.DATA_MAXIMA,'DD/MM/YYYY HH24:MI:SS')";
+        $qry = $this->conn->prepare($sql);
+        if ($dataInicio != ""){
+            $qry->bindValue(":DATAINICIO", $dataInicio . " 00:00:00");
+        }
+        if ($dataFim != ""){
+            $qry->bindValue(":DATAFIM", $dataFim . " 23:59:59");
+        }
+        if ($situacao != ""){
+            $qry->bindValue(":SITUACAO", $situacao);
+        }
+        if ($pedidoSemanal != ""){
+            $qry->bindValue(":PEDIDOSEMANAL", $pedidoSemanal);
+        }
+        if ($idEnfermeira != ""){
+            $qry->bindValue(":IDENFERMEIRA", $idEnfermeira);
+        }
+        if ($justificativa != ""){
+            $qry->bindValue(":JUSTIFICATIVA", $justificativa);
+        }
+        $qry->execute();
+        $res = $qry->fetchAll(PDO::FETCH_ASSOC);
+        return $res;
+
+    }
+
+    public function excluirSolicitacaoTriagem($id, $motivo, $observacao, $status, $idUsuario){
+
+        $sql = "UPDATE 
+                    SR_SOLICITACAO_MATMED 
+                SET 
+                    STATUS = :STATUS
+                    , MOTIVO_EXC = :MOTIVO
+                    , OBS_EXC = :OBSERVACAO
+                    , IDUSU_EXC = :IDUSUARIO
+                    , DATA_EXC = TO_DATE('" . date("d/m/Y H:i:s") . "','DD/MM/YYYY HH24:MI:SS') 
+                WHERE 
+                    ID = :ID";
+        $qry = $this->conn->prepare($sql);
+        $qry->bindValue(":STATUS", $status);
+        $qry->bindValue(":MOTIVO", $motivo);
+        $qry->bindValue(":OBSERVACAO", $observacao);
+        $qry->bindValue(":IDUSUARIO", $idUsuario);
+        $qry->bindValue(":ID", $id);
+        $qry->execute();
+
+        $sql2 = "UPDATE 
+                    SR_ROTA_MOTORISTA 
+                SET 
+                    STATUS = :STATUS
+                    , OBSEXC = :OBSERVACAO
+                    , IDUSU_EXC = :IDUSUARIO
+                    , DATAEXC = TO_DATE('" . date("d/m/Y H:i:s") . "','DD/MM/YYYY HH24:MI:SS') 
+                WHERE 
+                    IDSOLICITACAO = :ID";
+        $qry2 = $this->conn->prepare($sql2);
+        $qry2->bindValue(":STATUS", $status);
+        $qry2->bindValue(":OBSERVACAO", $observacao);
+        $qry2->bindValue(":IDUSUARIO", $idUsuario);
+        $qry2->bindValue(":ID", $id);
+        $qry2->execute();
+
+    } 
+    
+    public function realizarBaixaPrioridade($idUsuario, $prioridade, $idSolicitacao){
+
+        $dataSolicitada = date("d/m/Y H:i:s");
+
+        $sql = "UPDATE 
+                    SR_SOLICITACAO_MATMED 
+                SET 
+                    IDUSU_BAIXA_PRIORIDADE = :IDUSUARIO 
+                    , DATA_BAIXA_PRIORIDADE = TO_DATE('" . $dataSolicitada . "','DD/MM/YYYY HH24:MI:SS') 
+                    , PRIORIDADE = :PRIORIDADE 
+                    , STATUS = 'BF' 
+                WHERE 
+                    ID = :ID";
+        $qry = $this->conn->prepare($sql);
+        $qry->bindValue(":IDUSUARIO", $idUsuario);
+        $qry->bindValue(":IDPRIORIDADE", $prioridade);
+        $qry->bindValue(":ID", $idSolicitacao);
+        $qry->execute();
+
+        $dataSeparacao = explode(" ", $dataSolicitada);
+        $data = $dataSeparacao[0];
+        $hora = $dataSeparacao[1];
+
+        // Separa a data em dia, mes e ano
+        $arrData = explode("/", $data);
+        // Separa a hora em hora, minuto e segundo
+        $arrHora = explode(":", $hora);
+
+        // adiciona as horas a data
+        
+
+        // Prioridades
+        // 1: Vermelho - 2 Horas
+        // 2: Laranja - 6 Horas
+        // 3: Amarelo - 8 Horas
+        // 4: Verde - 24 Horas
+        // 5: Azul - Prazo normal (7 DIAS)
+        // 6: Rosa - 30min
+        // 7: Cinza - 4 horas
+        // 8: Lilas - 36 horas
+        // 9: Azul Claro - 2 horas
+
+        $addmin = 0;
+        if ($prioridade == 1) $add = 2; // Vermelho
+        else if ($prioridade == 2) $add = 6; // Laranja
+        else if ($prioridade == 3) $add = 8; // Amarelo Chamado n. 3895 - Solicitante pediu para mudar o tempo de 12 para 8
+        else if ($prioridade == 4) $add = 24; // Verde
+        else if ($prioridade == 5) $add = 168; // Azul
+        else if ($prioridade == 6) $addmin = 30; // Rosa
+        else if ($prioridade == 7) $add = 6; // Cinza
+        else if ($prioridade == 8) $add = 72; // Lilás Chamado n. 12205 - Solicitação de 36 para 72h o prazo.
+        else if ($prioridade == 9) $add = 2; // Azul Claro
+        else $add = 0;
+
+        $resultado = date("d/m/Y H:i:s", mktime($arrHora[0] + $add, $arrHora[1] + $addmin, $arrHora[2], $data[1], $data[0], $data[2]));
+
+        $sql2 = "UPDATE 
+                    SR_SOLICITACAO_MATMED 
+                SET 
+                    DATA_MAXIMA = TO_DATE('" . $resultado . "','DD/MM/YYYY HH24:MI:SS') 
+                WHERE 
+                    ID = :ID";
+        $qry2 = $this->conn->prepare($sql2);
+        $qry2->bindValue(":ID", $idSolicitacao);
+        $qry2->execute();
+
+
+        $sql3 = "UPDATE 
+                    SR_ROTA_MOTORISTA 
+                SET 
+                    DATAMAXIMA = TO_DATE('" . $resultado . "','DD/MM/YYYY HH24:MI:SS') 
+                WHERE 
+                    IDSOLICITACAO = :ID";
+        $qry3 = $this->conn->prepare($sql3);
+        $qry3->bindValue(":ID", $idSolicitacao);
+        $qry3->execute();
+
+    }
+
 }

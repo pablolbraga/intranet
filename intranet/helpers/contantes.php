@@ -263,4 +263,47 @@ class Constantes{
         array("ID" => "Outros", "NOME" => "Outros"),
     );
 
+    static $arrayJustificativaPrioridade = array(
+        array("ID" => "", "NOME" => "SELECIONE"),
+        array("ID" => "Admissão", "NOME" => "Admissão"),
+        array("ID" => "Alteração no estado clínico", "NOME" => "Alteração no estado clínico"),
+        array("ID" => "Aplicação de equipamentos", "NOME" => "Aplicação de equipamentos"),
+        array("ID" => "Falha na autorização", "NOME" => "Falha na autorização"),
+        array("ID" => "Falha na solicitação (Enfermeira)", "NOME" => "Falha na solicitação (Enfermeira)"),
+        array("ID" => "Falha na solicitação(admissão)", "NOME" => "Falha na solicitação(admissão)"),
+        array("ID" => "Falha da recepção", "NOME" => "Falha da recepção"),
+        array("ID" => "Falha Suprimentos (Pedidos, Separação, Conferencia e Dispensação)", "NOME" => "Falha Suprimentos (Pedidos, Separação, Conferencia e Dispensação)"),
+        array("ID" => "Pedido semanal", "NOME" => "Pedido semanal"),
+        array("ID" => "Pedido quinzenal", "NOME" => "Pedido quinzenal"),
+        array("ID" => "Pedido Mensal", "NOME" => "Pedido Mensal"),
+        array("ID" => "Pendências Mat / Med / Equipamento (Compra)", "NOME" => "Pendências Mat / Med / Equipamento (Compra)"),
+        array("ID" => "Procedimentos de enfermagem", "NOME" => "Procedimentos de enfermagem"),
+        array("ID" => "Prorrogação de serviço", "NOME" => "Prorrogação de serviço"),
+        array("ID" => "Recolhimentos (Equipamentos / Mat /Med)", "NOME" => "Recolhimentos (Equipamentos / Mat /Med)"),
+        array("ID" => "Recolhimento de serviço", "NOME" => "Recolhimento de serviço"),
+        array("ID" => "Reposição de mat do(a) enfermeiro(a) e tecnico da base", "NOME" => "Reposição de mat do(a) enfermeiro(a) e tecnico da base"),
+        array("ID" => "Troca de mat/med/equip", "NOME" => "Troca de mat/med/equip"),
+        array("ID" => "Plantão de Cuidador", "NOME" => "Plantão de Cuidador")
+    ); 
+
+    static $arraySituacaoPrioridade = array(
+        array("ID" => "", "NOME" => "SELECIONE"),
+        array("ID" => "S", "NOME" => "Solicitado"),
+        array("ID" => "A", "NOME" => "Autorização"),
+        array("ID" => "P", "NOME" => "Triagem"),
+        array("ID" => "BF", "NOME" => "Dispensação"),
+        array("ID" => "M", "NOME" => "Motorista"),
+        array("ID" => "F", "NOME" => "Finalizado")
+    ); 
+
+    static $arrayMotivoExclusaoPrioridade = array(
+        array("ID" => "", "NOME" => "SELECIONE"),
+        array("ID" => "1", "NOME" => "NÃO AUTORIZADO"),
+        array("ID" => "2", "NOME" => "SERVIÇOS DE TERCEIROS"),
+        array("ID" => "3", "NOME" => "DUPLICIDADE DE PEDIDO"),
+        array("ID" => "4", "NOME" => "ERRO DE SOLICITAÇÃO"),
+        array("ID" => "5", "NOME" => "TRIAGEM ERRADA"),
+        array("ID" => "6", "NOME" => "OUTROS")
+    );
+
 }

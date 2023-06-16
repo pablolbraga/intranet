@@ -77,6 +77,7 @@ if ($_SESSION["ID_USUARIO"] == ""){
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuServicos">
                     <li><a class="dropdown-item" href="index.php?pag=2"><b>Solicitar Serviço</b></a></li>
+                    <li><a class="dropdown-item" href="index.php?pag=11"><b>Triagem de Prioridade</b></a></li>
                 </ul>
             </div>
             &nbsp;
@@ -131,6 +132,8 @@ if ($_SESSION["ID_USUARIO"] == ""){
             require_once("alteracaoprescricao.php");
         } else if (@$_GET["pag"] == "10"){
             require_once("controleantibiotico.php");
+        } else if (@$_GET["pag"] == "11"){
+            require_once("triagemprioridade.php");
         }
         ?>
 

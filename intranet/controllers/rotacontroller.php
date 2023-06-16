@@ -34,4 +34,23 @@ class RotaController{
 
     }
 
+    public function buscarRegistroPorSolicitacao($idSolicitacao){
+
+        $sql = "
+        SELECT 
+            TO_CHAR(A.DATAATEND, 'DD/MM/YYYY HH24:MI:SS') AS DTINIATEND
+        FROM
+            SR_ROTA_MOTORISTA A
+        WHERE
+            A.IDSOLICITACAO = :IDSOLICITACAO
+        ";
+        //echo $sql . "<br>" . $idSolicitacao;
+        $qry = $this->conn->prepare($sql);
+        $qry->bindValue(":IDSOLICITACAO", $idSolicitacao);
+        $qry->execute();
+        $res = $qry->fetchAll(PDO::FETCH_ASSOC);
+        return $res;
+
+    }
+
 }
