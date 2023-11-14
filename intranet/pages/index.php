@@ -10,98 +10,26 @@ if ($_SESSION["ID_USUARIO"] == ""){
         <title>Saúde Residence - Intranet</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
         <link href="../css/bs/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">               
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.min.js"></script>
         <script src="../js/funcoes.js"></script>
         <script src="../js/dt/jquery-3.5.1.js"></script>
-        <script src="../js/dt/jquery.dataTables.min.js"></script>
-        <script src="../js/dt/dataTables.bootstrap5.min.js"></script>
-        <script src="../js/dt/buttons.print.min.js"></script>
-        <script src="../js/dt/dataTables.buttons.min.js"></script>
-        <script src="../js/dt/buttons.html5.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <img class="rounded-circle" alt="100x100" width="50" height="50" src="../imgs/logo.png"  data-holder-rendered="true">
-            &nbsp;
-            <div class="dropdown">
-                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuAtendimento" data-bs-toggle="dropdown" aria-expanded="false">
-                    Atendimento
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuAtendimento">
-                    <li><a class="dropdown-item" href="index.php?pag=3"><b>Plantões</b></a></li>
-                </ul>
-            </div>
-            &nbsp;
-            <div class="dropdown">
-                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuCcid" data-bs-toggle="dropdown" aria-expanded="false">
-                    CCID
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuCcid">
-                    <li><a class="dropdown-item" href="index.php?pag=10"><b>Controle de Antibiótico</b></a></li>
-                </ul>
-            </div>
-            &nbsp;
-            <div class="dropdown">
-                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuAtendimento" data-bs-toggle="dropdown" aria-expanded="false">
-                    Autorização
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuAutorizacao">
-                    <li><a class="dropdown-item" href="index.php?pag=6"><b>Visualizar Orçamento</b></a></li>
-                </ul>
-            </div>
-            &nbsp;
-            <div class="dropdown">
-                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuEnfermagem" data-bs-toggle="dropdown" aria-expanded="false">
-                    Enfermagem
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuEnfermagem">
-                    <li><a class="dropdown-item" href="index.php?pag=9"><b>Alteração de Prescrição</b></a></li>
-                </ul>
-            </div>
-            &nbsp;
-            <div class="dropdown">
-                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuFinanceiro" data-bs-toggle="dropdown" aria-expanded="false">
-                    Financeiro
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuFinanceiro">
-                    <li><a class="dropdown-item" href="index.php?pag=8"><b>Solicitar Nota</b></a></li>
-                </ul>
-            </div>
-            &nbsp;
-            <div class="dropdown">
-                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuServicos" data-bs-toggle="dropdown" aria-expanded="false">
-                    Serviços
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuServicos">
-                    <li><a class="dropdown-item" href="index.php?pag=2"><b>Solicitar Serviço</b></a></li>
-                    <li><a class="dropdown-item" href="index.php?pag=11"><b>Triagem de Prioridade</b></a></li>
-                </ul>
-            </div>
-            &nbsp;
-            <div class="dropdown">
-                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuSuprimento" data-bs-toggle="dropdown" aria-expanded="false">
-                    Suprimentos
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuSuprimento">
-                    <li><a class="dropdown-item" href="index.php?pag=5"><b>Solicitação de Compras</b></a></li>
-                </ul>
-            </div>
-            &nbsp;
-            <div class="dropdown">
-                <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuVisitas" data-bs-toggle="dropdown" aria-expanded="false">
-                    Visitas
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuVisitas">
-                    <li><a class="dropdown-item" href="index.php?pag=1"><b>Agendamento</b></a></li>
-                    <li><a class="dropdown-item" href="index.php?pag=4"><b>Programação</b></a></li>
-                </ul>
-            </div>
-            &nbsp;
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"></a>
+                <div>
+                    <img class="rounded-circle" alt="100x100" width="50" height="50" src="../imgs/logo.png"  data-holder-rendered="true">
+                    &nbsp;
+                    <a class="btn btn-success btn-sm" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                        <i class="bi bi-list"></i>
+                        Menu
+                    </a>
+                </div>
                 <div>
                     <label style="color: white">Seja bem vindo, <?php echo $_SESSION["NOME_USUARIO"] ?></label>&nbsp;
                     <a href="sair.php" class="btn btn-danger btn-sm">Sair</a>
@@ -109,7 +37,7 @@ if ($_SESSION["ID_USUARIO"] == ""){
             </div>
         </nav>
 
-        <br>
+        <br/>
 
         <?php
         if (@$_GET["pag"] == "1"){
@@ -137,6 +65,129 @@ if ($_SESSION["ID_USUARIO"] == ""){
         }
         ?>
 
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Saúde Residence</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseAtendimento" aria-expanded="false" aria-controls="flush-collapseAtendimento">
+                                    Atendimento
+                                </button>
+                            </h2>
+                            <div id="flush-collapseAtendimento" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <a class="btn btn-primary btn-sm" href="index.php?pag=3"><b>Passagem de Plantão</b></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseAutorizacao" aria-expanded="false" aria-controls="flush-collapseAutorizacao">
+                                    Autorização     
+                                </button>
+                            </h2>
+                            <div id="flush-collapseAutorizacao" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <a class="btn btn-primary btn-sm" href="index.php?pag=6"><b>Visualizar Orçamento</b></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseCcid" aria-expanded="false" aria-controls="flush-collapseCcid">
+                                    CCID     
+                                </button>
+                            </h2>
+                            <div id="flush-collapseCcid" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <a class="btn btn-primary btn-sm" href="index.php?pag=10"><b>Controle de Antibiótico</b></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEnfermagem" aria-expanded="false" aria-controls="flush-collapseEnfermagem">
+                                    Enfermagem     
+                                </button>
+                            </h2>
+                            <div id="flush-collapseEnfermagem" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <a class="btn btn-primary btn-sm" href="index.php?pag=9"><b>Alteração de Prescrição</b></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFinanceiro" aria-expanded="false" aria-controls="flush-collapseFinanceiro">
+                                    Financeiro
+                                </button>
+                            </h2>
+                            <div id="flush-collapseFinanceiro" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <a class="btn btn-primary btn-sm" href="index.php?pag=8"><b>Solicitar Nota</b></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseServicos" aria-expanded="false" aria-controls="flush-collapseServicos">
+                                    Serviços
+                                </button>
+                            </h2>
+                            <div id="flush-collapseServicos" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <a class="btn btn-primary btn-sm" href="index.php?pag=2"><b>Solicitar Serviço</b></a>
+                                    <a class="btn btn-primary btn-sm" href="index.php?pag=11"><b>Triagem de Prioridade</b></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSuprimentos" aria-expanded="false" aria-controls="flush-collapseSuprimentos">
+                                    Suprimentos
+                                </button>
+                            </h2>
+                            <div id="flush-collapseSuprimentos" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <a class="btn btn-primary btn-sm" href="index.php?pag=5"><b>Solicitação de Compras</b></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseVisitas" aria-expanded="false" aria-controls="flush-collapseVisitas">
+                                    Visitas
+                                </button>
+                            </h2>
+                            <div id="flush-collapseVisitas" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <a class="btn btn-primary btn-sm" href="index.php?pag=1"><b>Agendamento</b></a>
+                                    <a class="btn btn-primary btn-sm" href="index.php?pag=4"><b>Programação</b></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTI" aria-expanded="false" aria-controls="flush-collapseTI">
+                                    TI
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTI" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <a class="btn btn-primary btn-sm" href="#"><b>Usuários</b></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>           
+        
 
         <script src="../js/bs/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>        
     </body>
