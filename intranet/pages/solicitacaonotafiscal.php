@@ -69,22 +69,23 @@ $funcao = new Funcoes();
 
                 <?php
                 if (isset($_POST["btnPesquisar"])){
-                    $qry = $ctrFinanceiro->listarNotas('', @$_POST["txtDataInicioPesq"], @$_POST["txtDataFimPesq"], 'N', @$_POST["txtCodPacientePesq"]);
+                    $qry = $ctrFinanceiro->listarSolicitacaoNota('', @$_POST["txtDataInicioPesq"], @$_POST["txtDataFimPesq"], 'N', @$_POST["txtCodPacientePesq"]);
 
                     if (count($qry) > 0){
                         ?>
                         <br/>
-                        <table class="table table-bordered table-sm">
+                        <table class="table table-bordered table-sm" id="table">
                             <thead>
                                 <tr class="align-middle">
+                                    <th scope="col" style="display: none;">Código</th>   
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Tipo</th>
                                     <th scope="col">Data Solic.</th>
                                     <th scope="col">Data Máxima</th>
                                     <th scope="col">Data Baixa</th>
                                     <th scope="col">Duração</th>
-                                    <th scope="col">Solicitante</th>
-                                    <th scope="col">Paciente</th>
+                                    <th scope="col">Solicitante</th>                                    
                                     <th scope="col">Observação</th>
-                                    <td style="display: none;">Código</td>                                    
                                     <td style="display: none;">Id Solicitante</td>  
                                     <td style="display: none;">Id Paciente</td>  
                                     <td style="display: none;">Valor</td>  
@@ -97,6 +98,9 @@ $funcao = new Funcoes();
                                 foreach($qry as $lista){
                                     ?>
                                     <tr class="align-middle">
+                                        <td style="display: none;"><?php echo $lista["ID"] ?></td>
+                                        <td><?php echo $lista["NMPACIENTE"]?></td>
+                                        <td><?php echo $lista["NMTIPO"]?></td>
                                         <td><?php echo $lista["DT_SOLIC"]?></td>
                                         <td>
                                             <?php
@@ -133,12 +137,10 @@ $funcao = new Funcoes();
                                             ?>
                                         </td>
                                         <td><?php echo $lista["NMUSU_SOLIC"]?></td>
-                                        <td><?php echo $lista["NMPACIENTE"]?></td>
                                         <td><?php echo $lista["OBS_SOLIC"]?></td>
-                                        <td><?php echo $lista["ID"] ?></td>
-                                        <td><?php echo $lista["IDUSU_SOLIC"] ?></td>
-                                        <td><?php echo $lista["IDPARTCONV"] ?></td>
-                                        <td><?php echo $lista["VALOR"] ?></td>
+                                        <td style="display: none;"><?php echo $lista["IDUSU_SOLIC"] ?></td>
+                                        <td style="display: none;"><?php echo $lista["IDPARTCONV"] ?></td>
+                                        <td style="display: none;"><?php echo $lista["VALOR"] ?></td>
                                         <td style="text-align: center;">
                                             <?php
                                             if ($lista["STATUS"] == "A"){
@@ -158,11 +160,6 @@ $funcao = new Funcoes();
                                 }
                                 ?>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="8"><b>Quantidade de registros: <?php echo $contador ?></b></td>
-                                </tr>
-                            </tfoot>
                         </table>
                         <?php
                     } else {
@@ -342,7 +339,7 @@ $funcao = new Funcoes();
         var formData = new FormData(this);
 
         $.ajax({
-            url: "notafiscal_mov.php?tipo=N",
+            url: "solicitacaonotafiscal_mov.php?tipo=N",
             type: "POST",
             data: formData, 
 
@@ -370,13 +367,13 @@ $funcao = new Funcoes();
         }).get();
 
         //console.log(tableData);
-        $("#txtCodigoAlt").val(tableData[7]);
-        $("#txtCodSolicitanteAlt").val(tableData[8]);
-        $("#txtDescSolicitanteAlt").val(tableData[4]);
-        $("#txtCodPacienteAlt").val(tableData[9]);
-        $("#txtDescPacienteAlt").val(tableData[5]);
-        $("#txtValorAlt").val(tableData[10]);
-        $("#txtObservacaoAlt").val(tableData[6]);
+        $("#txtCodigoAlt").val(tableData[0]);
+        $("#txtCodSolicitanteAlt").val(tableData[9]);
+        $("#txtDescSolicitanteAlt").val(tableData[7]);
+        $("#txtCodPacienteAlt").val(tableData[10]);
+        $("#txtDescPacienteAlt").val(tableData[1]);
+        $("#txtValorAlt").val(tableData[11]);
+        $("#txtObservacaoAlt").val(tableData[8]);
 
         $("#mensagemAlt").text("");
         $("#mensagemAlt").removeClass();
@@ -390,7 +387,7 @@ $funcao = new Funcoes();
         var formData = new FormData(this);
 
         $.ajax({
-            url: "notafiscal_mov.php?tipo=",
+            url: "solicitacaonotafiscal_mov.php?tipo=",
             type: "POST",
             data: formData, 
 
@@ -417,7 +414,7 @@ $funcao = new Funcoes();
             return $(this).text().trim();
         }).get();
 
-        $("#txtCodigoExc").val(tableData[7]);
+        $("#txtCodigoExc").val(tableData[0]);
         
         $("#mensagemExc").text("");
         $("#mensagemExc").removeClass();
@@ -431,7 +428,7 @@ $funcao = new Funcoes();
         var formData = new FormData(this);
 
         $.ajax({
-            url: "notafiscal_mov.php?tipo=X",
+            url: "solicitacaonotafiscal_mov.php?tipo=X",
             type: "POST",
             data: formData, 
 

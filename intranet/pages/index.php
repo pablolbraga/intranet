@@ -61,7 +61,7 @@ if ($_SESSION["ID_USUARIO"] == ""){
         } else if (@$_GET["pag"] == "7"){
             require_once("orcamento_pesq.php");
         } else if (@$_GET["pag"] == "8"){
-            require_once("notafiscal.php");
+            require_once("solicitacaonotafiscal.php");
         } else if (@$_GET["pag"] == "9"){
             require_once("alteracaoprescricao.php");
         } else if (@$_GET["pag"] == "10"){

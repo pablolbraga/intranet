@@ -13,7 +13,7 @@ $c = new NotaFiscalModel();
 if ($_REQUEST["tipo"] == "X"){
 
     try{
-        $ctrFinanceiro->excluir($_POST["txtCodigoExc"], $_POST["txtIdUsuarioExc"], $_POST["txtObservacaoExc"]);
+        $ctrFinanceiro->excluirSolicitacaoNota($_POST["txtCodigoExc"], $_POST["txtIdUsuarioExc"], $_POST["txtObservacaoExc"]);
         echo "Incluído com sucesso."; exit();
     } catch(Exception $e){
         echo "Erro ao registrar a nota. Erro: " . $e->getMessage();
@@ -51,7 +51,7 @@ if ($_REQUEST["tipo"] == "X"){
 
     }
 
-    $dadosNota = $ctrFinanceiro->buscarNotaFiscalPorId($c->getCodigo());
+    $dadosNota = $ctrFinanceiro->buscarSolicitacaoNotaPorId($c->getCodigo());
 
     $url = "
     <html>

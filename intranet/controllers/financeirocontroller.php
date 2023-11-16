@@ -10,7 +10,7 @@ class FinanceiroController{
         $this->conn = Conexao::getInstance();
     }
 
-    public function listarNotas($status, $dataInicio, $dataFim, $tipo, $idPaciente){
+    public function listarSolicitacaoNota($status, $dataInicio, $dataFim, $tipo, $idPaciente){
 
         $sql = "SELECT 
                 A.ID, A.IDPARTCONV, TO_CHAR(A.DT_SOLIC, 'DD/MM/YYYY HH24:MI:SS') AS DT_SOLIC, B.NOME AS NMPACIENTE, 
@@ -65,20 +65,20 @@ class FinanceiroController{
 
     public function validaDadosNotaFiscal(NotaFiscalModel $nf){
 
-        if ($this->existeRegistro($nf->getCodigo())){
-            $this->alterarNotaFiscal($nf);
+        if ($this->existeSolicitacaoNota($nf->getCodigo())){
+            $this->alterarSolicitacaoNota($nf);
         } else {
-            $this->incluirNotaFiscal($nf);
+            $this->incluirSolicitacaoNota($nf);
         }
 
     }
 
-    private function existeRegistro($codigo){
-        $qry = $this->buscarNotaFiscalPorId($codigo);
+    private function existeSolicitacaoNota($codigo){
+        $qry = $this->buscarSolicitacaoNotaPorId($codigo);
         return count($qry) > 0;
     }
 
-    private function incluirNotaFiscal(NotaFiscalModel $nf){
+    private function incluirSolicitacaoNota(NotaFiscalModel $nf){
 
         $sql  = "INSERT INTO SR_SOLICNOTA (ID, IDUSU_SOLIC, DT_SOLIC, IDPARTCONV, OBS_SOLIC, STATUS, TIPO, VALOR) ";
         $sql .= "VALUES (:P1, :P2, TO_DATE(:P3,'DD/MM/YYYY HH24:MI:SS'), :P4, :P5, :P6, :P7, :P8)";
@@ -99,7 +99,7 @@ class FinanceiroController{
 
     }
 
-    private function alterarNotaFiscal(NotaFiscalModel $nf){
+    private function alterarSolicitacaoNota(NotaFiscalModel $nf){
 
         $sql = "UPDATE SR_SOLICNOTA SET IDPARTCONV = :P1, OBS_SOLIC = :P2 WHERE ID = :P3";
         $qry = $this->conn->prepare($sql);
@@ -110,7 +110,7 @@ class FinanceiroController{
 
     }
 
-    public function buscarNotaFiscalPorId($codigo){
+    public function buscarSolicitacaoNotaPorId($codigo){
 
         $sql = "SELECT 
                 A.*, E.NOME AS NMSOLICITANTE, TO_CHAR(DT_SOLIC, 'DD/MM/YYYY HH24:MI:SS') AS DATA_SOLICITACAO, 
@@ -130,7 +130,7 @@ class FinanceiroController{
 
     }
 
-    public function excluir($id, $idUsuario, $observacao){
+    public function excluirSolicitacaoNota($id, $idUsuario, $observacao){
 
         $data = date("d/m/Y H:i:s");
         $sql = "UPDATE 
