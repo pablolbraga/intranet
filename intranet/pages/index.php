@@ -11,13 +11,19 @@ if ($_SESSION["ID_USUARIO"] == ""){
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-        <link href="../css/bs/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">               
+        <link href="../css/bs/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.min.js"></script>
         <script src="../js/funcoes.js"></script>
-        <script src="../js/dt/jquery-3.5.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -62,6 +68,8 @@ if ($_SESSION["ID_USUARIO"] == ""){
             require_once("controleantibiotico.php");
         } else if (@$_GET["pag"] == "11"){
             require_once("triagemprioridade.php");
+        } else if (@$_GET["pag"] == "12"){
+            require_once("usuario.php");
         }
         ?>
 
@@ -179,7 +187,7 @@ if ($_SESSION["ID_USUARIO"] == ""){
                             </h2>
                             <div id="flush-collapseTI" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
-                                    <a class="btn btn-primary btn-sm" href="#"><b>Usuários</b></a>
+                                    <a class="btn btn-primary btn-sm" href="index.php?pag=12"><b>Usuários</b></a>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +196,13 @@ if ($_SESSION["ID_USUARIO"] == ""){
             </div>
         </div>           
         
-
+        <script>
+            new DataTable('#table', {
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json',
+                }
+            });
+        </script>
         <script src="../js/bs/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>        
     </body>
 </html>
