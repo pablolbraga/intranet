@@ -70,6 +70,8 @@ if ($_SESSION["ID_USUARIO"] == ""){
             require_once("triagemprioridade.php");
         } else if (@$_GET["pag"] == "12"){
             require_once("usuario.php");
+        } else if (@$_GET["pag"] == "13"){
+            require_once("clonarpermissaoacesso.php");
         }
         ?>
 
@@ -188,6 +190,7 @@ if ($_SESSION["ID_USUARIO"] == ""){
                             <div id="flush-collapseTI" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
                                     <a class="btn btn-primary btn-sm" href="index.php?pag=12"><b>Usuários</b></a>
+                                    <a class="btn btn-primary btn-sm" href="index.php?pag=13"><b>Clonar Permissões</b></a>
                                 </div>
                             </div>
                         </div>
