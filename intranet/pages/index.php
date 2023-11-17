@@ -72,6 +72,8 @@ if ($_SESSION["ID_USUARIO"] == ""){
             require_once("usuario.php");
         } else if (@$_GET["pag"] == "13"){
             require_once("clonarpermissaoacesso.php");
+        } else if (@$_GET["pag"] == "14"){
+            require_once("notafiscal.php");
         }
         ?>
 
@@ -139,7 +141,8 @@ if ($_SESSION["ID_USUARIO"] == ""){
                             </h2>
                             <div id="flush-collapseFinanceiro" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
-                                    <a class="btn btn-primary btn-sm" href="index.php?pag=8"><b>Solicitar Nota</b></a>
+                                    <a class="btn btn-primary btn-sm" href="index.php?pag=14"><b>Nota Fiscal</b></a>    
+                                    <a class="btn btn-primary btn-sm" href="index.php?pag=8"><b>Solicitar Nota</b></a>                                    
                                 </div>
                             </div>
                         </div>

@@ -441,4 +441,13 @@ class Funcoes{
         return $valor + 1;
     }
 
+    public function converterDecimalParaBanco($valor){
+
+        $valor = str_replace(".", "", $valor);
+        $valor = str_replace(",", ".", $valor);
+
+        return $valor;
+
+    }
+
 }

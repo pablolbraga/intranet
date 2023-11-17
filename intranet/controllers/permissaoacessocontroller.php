@@ -22,6 +22,7 @@ class PermissaoAcessoController{
         $sqlPermissaoTelaDe = "SELECT * FROM SR_PERMISSAO_TELA WHERE IDUSUARIO  = :IDUSUARIO";
         $qryPermissaoTelaDe = $this->conn->prepare($sqlPermissaoTelaDe);
         $qryPermissaoTelaDe->bindValue(":IDUSUARIO", $idUsuarioDe);
+        $qryPermissaoTelaDe->execute();
         $resPermissaoTelaDe = $qryPermissaoTelaDe->fetchAll(PDO::FETCH_ASSOC);
         $qtdPermissaoTelaDe = count($resPermissaoTelaDe);
         for ($i = 0; $i < $qtdPermissaoTelaDe; $i++){

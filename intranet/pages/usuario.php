@@ -164,7 +164,7 @@ $ctrUsuario = new UsuarioController();
                                 <div class="col-sm-3">
                                     <div class="input-group">
                                         <input type="text" id="txtCodUsuarioIw" name="txtCodUsuarioIw" class="form-control form-control-sm" aria-label="" aria-describedby="btnPesqUsuarioIw" readonly="readonly" style="text-align: right;" required>
-                                        <button class="btn btn-outline-secondary btn-sm" type="button" id="btnPesqUsuarioIW" onclick="window.open('busca.php?tipo=13&campocodigo=txtCodUsuarioIw&campodescricao=txtDescUsuarioIw&title=Pesquisar Usuário IW','','width=900, height=500')">...</button>
+                                        <button class="btn btn-outline-secondary btn-sm" type="button" id="btnPesqUsuarioIW" onclick="window.open('busca.php?tipo=14&campocodigo=txtCodUsuarioIw&campodescricao=txtDescUsuarioIw&title=Pesquisar Usuário IW','','width=900, height=500')">...</button>
                                     </div>
                                 </div>  
                                 <div class="col-sm-9">
@@ -181,7 +181,7 @@ $ctrUsuario = new UsuarioController();
                                     <div class="col-sm-3">
                                         <div class="input-group">
                                             <input type="text" id="txtCodUgb" name="txtCodUgb" class="form-control form-control-sm" aria-label="" aria-describedby="btnPesqUgb" readonly="readonly" style="text-align: right;" required>
-                                            <button class="btn btn-outline-secondary btn-sm" type="button" id="btnPesqUgb" onclick="window.open('busca.php?tipo=14&campocodigo=txtCodUgb&campodescricao=txtDescUgb&title=Pesquisar UGB','','width=900, height=500')">...</button>
+                                            <button class="btn btn-outline-secondary btn-sm" type="button" id="btnPesqUgb" onclick="window.open('busca.php?tipo=15&campocodigo=txtCodUgb&campodescricao=txtDescUgb&title=Pesquisar UGB','','width=900, height=500')">...</button>
                                         </div>
                                     </div>  
                                     <div class="col-sm-9">

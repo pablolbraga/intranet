@@ -306,4 +306,12 @@ class Constantes{
         array("ID" => "6", "NOME" => "OUTROS")
     );
 
+    static $arrayTipoNotaFiscal = array(
+        array("ID" => "", "NOME" => "SELECIONE"),
+        array("ID" => "O", "NOME" => "OPERADORA"),
+        array("ID" => "P", "NOME" => "PARTICULAR"),
+        array("ID" => "F", "NOME" => "FORNECEDOR"),
+        array("ID" => "C", "NOME" => "CLIENTE")
+    );
+
 }

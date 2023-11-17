@@ -1,7 +1,8 @@
 <?php
 require_once("../conexao/conexao.php");
+require_once("../models/solicitacaonotafiscalmodel.php");
 
-class FinanceiroController{
+class SolicitacaoNotaFiscalController{
 
     private $conn;
 
@@ -63,7 +64,7 @@ class FinanceiroController{
 
     }
 
-    public function validaDadosNotaFiscal(NotaFiscalModel $nf){
+    public function validaSolicitacaoNotaFiscal(SolicitacaoNotaFiscalModel $nf){
 
         if ($this->existeSolicitacaoNota($nf->getCodigo())){
             $this->alterarSolicitacaoNota($nf);
@@ -78,7 +79,7 @@ class FinanceiroController{
         return count($qry) > 0;
     }
 
-    private function incluirSolicitacaoNota(NotaFiscalModel $nf){
+    private function incluirSolicitacaoNota(SolicitacaoNotaFiscalModel $nf){
 
         $sql  = "INSERT INTO SR_SOLICNOTA (ID, IDUSU_SOLIC, DT_SOLIC, IDPARTCONV, OBS_SOLIC, STATUS, TIPO, VALOR) ";
         $sql .= "VALUES (:P1, :P2, TO_DATE(:P3,'DD/MM/YYYY HH24:MI:SS'), :P4, :P5, :P6, :P7, :P8)";
@@ -99,7 +100,7 @@ class FinanceiroController{
 
     }
 
-    private function alterarSolicitacaoNota(NotaFiscalModel $nf){
+    private function alterarSolicitacaoNota(SolicitacaoNotaFiscalModel $nf){
 
         $sql = "UPDATE SR_SOLICNOTA SET IDPARTCONV = :P1, OBS_SOLIC = :P2 WHERE ID = :P3";
         $qry = $this->conn->prepare($sql);
@@ -150,4 +151,5 @@ class FinanceiroController{
 
     }
 
+    
 }
